@@ -1,28 +1,34 @@
+import { useMemo } from 'react'
+
 const WAZE_URL  = 'https://waze.com/ul?q=Calle+151+%23114-40+Bogota'
 const GMAPS_URL = 'https://maps.google.com/?q=Calle+151+%23114-40,+Bogota'
 
 const openGoogleCalendar = () => {
   const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
     '&text=Revelaci%C3%B3n+de+G%C3%A9nero+%C2%B7+Valentina+%26+Dar%C3%ADo' +
-    '&dates=20260620T150000/20260620T180000' +
-    '&details=%C2%A1El+beb%C3%A9+de+Valentina+y+Dar%C3%ADo+revela+su+g%C3%A9nero!' +
+    '&dates=20260619T150000/20260619T153000' +
+    '&details=Recuerda+que+ma%C3%B1ana+es+la+revelaci%C3%B3n+de+g%C3%A9nero+de+Valentina+y+Dar%C3%ADo+%F0%9F%8E%89+El+evento+es+el+20+de+Junio+a+las+3%3A00+PM.' +
     '&location=Calle+151+%23114-40%2C+Sal%C3%B3n+Comunal+Paseo+del+Parque+2%2C+Bogot%C3%A1'
   window.open(url, '_blank')
 }
 
 const downloadICS = () => {
   const ics = [
-    'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
-    'DTSTART:20260620T150000','DTEND:20260620T180000',
-    'SUMMARY:Revelación de Género · Valentina & Darío',
-    'DESCRIPTION:¡El bebé de Valentina y Darío revela su género!',
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'BEGIN:VEVENT',
+    'DTSTART:20260619T150000',
+    'DTEND:20260619T153000',
+    'SUMMARY:Mañana: Revelación de Género · Valentina & Darío',
+    'DESCRIPTION:Recuerda que mañana es la revelación de género de Valentina y Darío 🎉 El evento es el 20 de Junio a las 3:00 PM.',
     'LOCATION:Calle 151 #114-40\\, Salón Comunal Paseo del Parque 2\\, Bogotá',
-    'END:VEVENT','END:VCALENDAR',
+    'END:VEVENT',
+    'END:VCALENDAR',
   ].join('\r\n')
   const blob = new Blob([ics], { type: 'text/calendar' })
   const url  = URL.createObjectURL(blob)
   const a    = document.createElement('a')
-  a.href = url; a.download = 'revelacion-genero.ics'; a.click()
+  a.href = url; a.download = 'recordatorio-revelacion.ics'; a.click()
   URL.revokeObjectURL(url)
 }
 
@@ -64,16 +70,20 @@ const IconGoogleMaps = () => (
 )
 
 const details = [
-  { icon: <IconCalendar />, label: '¿Cuándo?',   value: 'Sábado 20 de Junio, 2026' },
+  { icon: <IconCalendar />, label: '¿Cuándo?',    value: 'Sábado 20 de Junio, 2026' },
   { icon: <IconClock />,   label: '¿A qué hora?', value: '3:00 PM' },
   { icon: <IconMapPin />,  label: '¿Dónde?',      value: 'Salón Comunal · Conjunto Paseo del Parque 2', sub: 'Calle 151 #114-40, Bogotá' },
 ]
 
 export default function EventDetails() {
+  const isIOS = useMemo(() =>
+    /iPad|iPhone|iPod/.test(navigator.userAgent), []
+  )
+
   return (
     <section className="py-16 px-6 flex flex-col items-center">
       <p className="font-sans text-xs tracking-[0.35em] uppercase text-cream-500 mb-3 animate-fade-up text-center">
-        Mis papis me pidieron que te anotaras esto
+        Mis papis me pidieron que anotaras esto
       </p>
       <h2 className="font-serif text-4xl md:text-5xl font-light italic text-cream-800 mb-3 text-center animate-fade-up delay-100">
         Los detalles del gran día
@@ -119,27 +129,30 @@ export default function EventDetails() {
         </a>
       </div>
 
-      {/* Botones recordatorio */}
-      <div className="mt-3 w-full max-w-md animate-fade-up delay-600 flex flex-col sm:flex-row gap-3">
-        <button
-          onClick={openGoogleCalendar}
-          className="w-full flex items-center justify-center gap-2 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
-        >
-          <IconBell /> Google Calendar
-        </button>
-        <button
-          onClick={downloadICS}
-          className="w-full flex items-center justify-center gap-2 bg-white/70 hover:bg-white border border-cream-200 text-cream-700 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
-        >
-          <IconBell /> Apple / Otro
-        </button>
+      {/* Botón recordatorio — detecta iOS o Android automáticamente */}
+      <div className="mt-3 w-full max-w-md animate-fade-up delay-600">
+        {isIOS ? (
+          <button
+            onClick={downloadICS}
+            className="w-full flex items-center justify-center gap-2 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
+          >
+            <IconBell /> Recordar evento
+          </button>
+        ) : (
+          <button
+            onClick={openGoogleCalendar}
+            className="w-full flex items-center justify-center gap-2 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
+          >
+            <IconBell /> Recordar evento
+          </button>
+        )}
       </div>
 
       {/* Dress code con osito */}
       <div className="mt-12 w-full max-w-md animate-fade-up delay-700">
         <div className="bg-white/60 border border-cream-200 rounded-3xl p-6 flex flex-col items-center text-center">
           <img
-            src="/images/ositodresscode.jpg"
+            src="/images/ositodresscode.png"
             alt="osito dress code"
             className="w-28 h-28 object-contain mb-4"
             style={{ filter: 'drop-shadow(0 4px 12px rgba(191,159,104,0.2))' }}
