@@ -1,6 +1,15 @@
 const WAZE_URL  = 'https://waze.com/ul?q=Calle+151+%23114-40+Bogota'
 const GMAPS_URL = 'https://maps.google.com/?q=Calle+151+%23114-40,+Bogota'
 
+const openGoogleCalendar = () => {
+  const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=Revelaci%C3%B3n+de+G%C3%A9nero+%C2%B7+Valentina+%26+Dar%C3%ADo' +
+    '&dates=20260620T150000/20260620T180000' +
+    '&details=%C2%A1El+beb%C3%A9+de+Valentina+y+Dar%C3%ADo+revela+su+g%C3%A9nero!' +
+    '&location=Calle+151+%23114-40%2C+Sal%C3%B3n+Comunal+Paseo+del+Parque+2%2C+Bogot%C3%A1'
+  window.open(url, '_blank')
+}
+
 const downloadICS = () => {
   const ics = [
     'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
@@ -64,7 +73,7 @@ export default function EventDetails() {
   return (
     <section className="py-16 px-6 flex flex-col items-center">
       <p className="font-sans text-xs tracking-[0.35em] uppercase text-cream-500 mb-3 animate-fade-up text-center">
-        Mis papis me pidieron que anotaras esto
+        Mis papis me pidieron que te anotaras esto
       </p>
       <h2 className="font-serif text-4xl md:text-5xl font-light italic text-cream-800 mb-3 text-center animate-fade-up delay-100">
         Los detalles del gran día
@@ -92,19 +101,37 @@ export default function EventDetails() {
 
       {/* Botones navegación */}
       <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 w-full max-w-md animate-fade-up delay-500">
-        <a href={GMAPS_URL} target="_blank" rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 bg-white/70 hover:bg-white border border-cream-200 text-cream-700 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md">
+        <a
+          href={GMAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2 bg-white/70 hover:bg-white border border-cream-200 text-cream-700 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
+        >
           <IconGoogleMaps /> Google Maps
         </a>
-        <a href={WAZE_URL} target="_blank" rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 bg-white/70 hover:bg-white border border-cream-200 text-cream-700 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md">
+        <a
+          href={WAZE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2 bg-white/70 hover:bg-white border border-cream-200 text-cream-700 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
+        >
           <IconWaze /> Waze
         </a>
       </div>
-      <div className="mt-3 w-full max-w-md animate-fade-up delay-600">
-        <button onClick={downloadICS}
-          className="w-full flex items-center justify-center gap-2 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md">
-          <IconBell /> Recordar evento
+
+      {/* Botones recordatorio */}
+      <div className="mt-3 w-full max-w-md animate-fade-up delay-600 flex flex-col sm:flex-row gap-3">
+        <button
+          onClick={openGoogleCalendar}
+          className="w-full flex items-center justify-center gap-2 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
+        >
+          <IconBell /> Google Calendar
+        </button>
+        <button
+          onClick={downloadICS}
+          className="w-full flex items-center justify-center gap-2 bg-white/70 hover:bg-white border border-cream-200 text-cream-700 font-sans text-xs tracking-widest uppercase py-3 px-5 rounded-full transition-all duration-300 hover:shadow-md"
+        >
+          <IconBell /> Apple / Otro
         </button>
       </div>
 
@@ -112,7 +139,7 @@ export default function EventDetails() {
       <div className="mt-12 w-full max-w-md animate-fade-up delay-700">
         <div className="bg-white/60 border border-cream-200 rounded-3xl p-6 flex flex-col items-center text-center">
           <img
-            src="/images/ositodresscode.png"
+            src="/images/ositodresscode.jpg"
             alt="osito dress code"
             className="w-28 h-28 object-contain mb-4"
             style={{ filter: 'drop-shadow(0 4px 12px rgba(191,159,104,0.2))' }}
@@ -124,7 +151,11 @@ export default function EventDetails() {
           <p className="font-serif text-2xl font-light text-cream-800 mb-1">Tonos neutros</p>
           <p className="font-sans text-sm text-cream-500 mb-5">Beige · Blanco · Crema</p>
           <div className="flex items-center gap-4">
-            {[{ color: '#F5F0E8', name: 'Beige' }, { color: '#FFFFFF', name: 'Blanco' }, { color: '#F8F2E4', name: 'Crema' }].map(({ color, name }) => (
+            {[
+              { color: '#F5F0E8', name: 'Beige' },
+              { color: '#FFFFFF', name: 'Blanco' },
+              { color: '#F8F2E4', name: 'Crema' },
+            ].map(({ color, name }) => (
               <div key={name} className="flex flex-col items-center gap-1">
                 <div className="w-9 h-9 rounded-full border border-cream-300 shadow-sm" style={{ backgroundColor: color }}/>
                 <span className="font-sans text-[10px] text-cream-400">{name}</span>
