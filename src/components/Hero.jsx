@@ -80,7 +80,7 @@ export default function Hero() {
       <div className="relative animate-fade-up delay-600 text-center" style={{ zIndex: 2 }}>
         <p className="font-sans text-xs tracking-[0.3em] uppercase text-cream-500 mb-1">Mis papitos</p>
         <h2 className="font-serif text-3xl md:text-4xl font-light text-cream-800">
-          Valentina <span className="text-cream-400 italic">&</span> Darío
+          Valentina <span className="text-cream-400 italic">y</span> Darío
         </h2>
       </div>
 

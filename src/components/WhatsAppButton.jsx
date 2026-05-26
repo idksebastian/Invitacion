@@ -30,27 +30,27 @@ export default function WhatsAppButton() {
         Ya los estoy esperando
       </p>
       <h2 className="font-serif text-4xl md:text-5xl font-light italic text-cream-800 mb-4 text-center animate-fade-up delay-100">
-        ¿Vienes a conocerme?
+        ¿Vienes a mi revelación?
       </h2>
-      <p className="font-sans text-sm text-cream-500 text-center max-w-md mb-3 animate-fade-up delay-200 leading-relaxed">
+      <p className="font-sans text-sm text-cream-500 text-center max-w-md mb-10 animate-fade-up delay-200 leading-relaxed">
         Mis papis necesitan saber si puedes venir. Un mensaje y listo.
       </p>
-      <a 
-      
+
+      <a
         href={WA_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="animate-fade-up delay-400 inline-flex items-center gap-3 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-sm tracking-[0.2em] uppercase px-10 py-5 rounded-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        className="animate-fade-up delay-400 inline-flex items-center justify-center gap-3 bg-cream-800 hover:bg-cream-700 text-cream-50 font-sans text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full max-w-xs py-4"
       >
         <IconWhatsApp />
         Confirmar asistencia
       </a>
 
-      <p className="mt-6 font-sans text-xs text-cream-400 animate-fade-in delay-500">
+      <p className="mt-6 font-sans text-xs text-cream-400 animate-fade-in delay-500 text-center">
         Se abrirá WhatsApp con el mensaje listo para enviar
       </p>
 
-      <div className="mt-14 max-w-sm text-center animate-fade-up delay-600">
+      <div className="mt-14 max-w-sm text-center animate-fade-up delay-600 px-4">
         <div className="flex items-center justify-center gap-2 mb-5">
           <IconStar /><IconStar /><IconStar />
         </div>

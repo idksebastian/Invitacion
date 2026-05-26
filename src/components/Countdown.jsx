@@ -30,13 +30,17 @@ function FlipDigit({ value, label }) {
   }, [value])
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="digit-box w-16 h-16 md:w-20 md:h-20 flex items-center justify-center overflow-hidden">
+    <div className="flex flex-col items-center gap-1">
+      <div
+        className="digit-box flex items-center justify-center overflow-hidden"
+        style={{ width: 56, height: 56 }}
+      >
         <span
-          className="font-serif text-3xl md:text-4xl font-light text-cream-800 tabular-nums"
+          className="font-serif font-light text-cream-800 tabular-nums"
           style={{
+            fontSize: 28,
             display: 'inline-block',
-            transform: animating ? 'translateY(-6px)' : 'translateY(0)',
+            transform: animating ? 'translateY(-5px)' : 'translateY(0)',
             opacity: animating ? 0 : 1,
             transition: 'transform 0.18s ease, opacity 0.18s ease',
           }}
@@ -44,7 +48,7 @@ function FlipDigit({ value, label }) {
           {display}
         </span>
       </div>
-      <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-cream-500">{label}</span>
+      <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-cream-500">{label}</span>
     </div>
   )
 }
@@ -57,7 +61,7 @@ export default function Countdown() {
   }, [])
 
   return (
-    <section className="py-16 px-6 flex flex-col items-center">
+    <section className="py-16 px-4 flex flex-col items-center">
       <div className="animate-fade-in mb-2">
         <img
           src="/images/ositodormido.png"
@@ -73,20 +77,20 @@ export default function Countdown() {
       <h2 className="font-serif text-4xl md:text-5xl font-light italic text-cream-800 mb-2 text-center animate-fade-up delay-100">
         Yo también estoy ansioso/a
       </h2>
-      <p className="font-sans text-sm text-cream-500 mb-10 text-center animate-fade-up delay-200">
-        Soy un bebé con el corazón latiéndome muy rápido
+      <p className="font-sans text-sm text-cream-500 mb-8 text-center animate-fade-up delay-200">
+        Soy un bebé con el corazón latiendo muy rápido
       </p>
 
       {time.done ? (
         <p className="font-serif text-2xl italic text-cream-700 animate-fade-in">¡El momento ha llegado!</p>
       ) : (
-        <div className="flex items-start gap-3 md:gap-5 animate-fade-up delay-300">
+        <div className="flex items-start justify-center gap-2 animate-fade-up delay-300 w-full">
           <FlipDigit value={time.days}    label="días"     />
-          <span className="font-serif text-3xl text-cream-300 mt-5">:</span>
+          <span className="font-serif text-2xl text-cream-300 mt-3">:</span>
           <FlipDigit value={time.hours}   label="horas"    />
-          <span className="font-serif text-3xl text-cream-300 mt-5">:</span>
+          <span className="font-serif text-2xl text-cream-300 mt-3">:</span>
           <FlipDigit value={time.minutes} label="minutos"  />
-          <span className="font-serif text-3xl text-cream-300 mt-5">:</span>
+          <span className="font-serif text-2xl text-cream-300 mt-3">:</span>
           <FlipDigit value={time.seconds} label="segundos" />
         </div>
       )}
