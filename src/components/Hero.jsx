@@ -73,12 +73,11 @@ export default function Hero() {
 
       <div className="relative animate-fade-up delay-500 text-center mb-4 max-w-sm" style={{ zIndex: 2 }}>
         <p className="font-serif text-lg font-light italic text-cream-700 leading-relaxed">
-          "Llevo meses guardando este secreto. Hoy mis papis y ustedes lo descubren al mismo tiempo."
+          "Llevo meses guardando este secreto. Pronto mis papis y ustedes lo descubrirán al mismo tiempo."
         </p>
       </div>
 
       <div className="relative animate-fade-up delay-600 text-center" style={{ zIndex: 2 }}>
-        <p className="font-sans text-xs tracking-[0.3em] uppercase text-cream-500 mb-1">Mis papitos</p>
         <h2 className="font-serif text-3xl md:text-4xl font-light text-cream-800">
           Valentina <span className="text-cream-400 italic">y</span> Darío
         </h2>
